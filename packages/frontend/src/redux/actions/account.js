@@ -256,7 +256,8 @@ export const {
     checkNewAccount,
     saveAccount,
     checkAccountAvailable,
-    clearCode
+    clearCode,
+    getMultisigRequest,
 } = createActions({
     INITIALIZE_RECOVERY_METHOD: [
         wallet.initializeRecoveryMethod.bind(wallet),
@@ -315,6 +316,10 @@ export const {
     GET_2FA_METHOD: [
         (...args) => twoFactorMethod('get2faMethod', wallet, args),
         () => ({})
+    ],
+    GET_MULTISIG_REQUEST: [
+        () => new TwoFactor(wallet, wallet.accountId).getMultisigRequest(),
+        () => ({}),
     ],
     GET_LEDGER_KEY: [
         wallet.getLedgerKey.bind(wallet),
